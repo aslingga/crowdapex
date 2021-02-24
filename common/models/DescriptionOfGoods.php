@@ -32,6 +32,10 @@ class DescriptionOfGoods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['description', 'ecl_group', 'ecl_item'], 'required'],
+            ['description', 'match', 'pattern' => '/^[a-zA-Z.,-]+(?:\s[a-zA-Z.,-]+)*$/', 'message' => 'Invalid characters in Goods Description.'],
+            ['ecl_group', 'match', 'pattern' => '/^[0-9.,]*$/', 'message' => 'Invalid characters in ECL Group.'],
+            ['ecl_item', 'match', 'pattern' => '/^[0-9.,]*$/', 'message' => 'Invalid characters in ECL Group.'],
             [['application_id', 'customer_id', 'user_id'], 'integer'],
             [['description', 'ecl_group', 'ecl_item'], 'string', 'max' => 255],
         ];
